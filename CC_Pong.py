@@ -9,22 +9,35 @@ display_size = (800, 800)
 display = pygame.display.set_mode(display_size)
 pygame.display.set_caption("Snake")
 
+#Set the starting position for paddle1
+paddle1_y = 400
+
 #Start the game loop
 running = True
 while running:
 
-    #This code runs whenever the window is closed. It doesn't do anything important right now
-    #If we want to save the game or something like that in the future though we will put the code to do that down
+    #This for loop handles all pygame events such as when the window is closed and when a key is pressed
     for event in pygame.event.get():
+        #Set running to false when the window is closed
         if event.type == pygame.QUIT:
-            #Down here!
             running = False
+
+    #This line makes a list of bools for each key on the keyboard, true if it is pressed
+    keys = pygame.key.get_pressed()
+
+    #Here we check if the keys "w" or "s" from the list are pressed and if they are we move paddle 1 up or down (the y is flipped)
+    if keys[pygame.K_w]:
+        paddle1_y -= 0.5
+
+    if keys[pygame.K_s]:
+        paddle1_y += 0.5
+
 
     #This sets the entire display/window to be the RGB of 0, 0, 0 which is black. I believe it is black by default but this allows different colors in the future
     display.fill((0, 0, 0))
 
     #This creates a new rectangle variable that stores the position (x, y) and size (width, height) of a rectangle
-    paddle1_rect = pygame.Rect(5, 400, 20, 100)
+    paddle1_rect = pygame.Rect(5, paddle1_y, 20, 100)
 
     #Creates a new rgb color for our paddle. 255, 255, 255 is white.
     paddle1_color = (255, 255, 255)
