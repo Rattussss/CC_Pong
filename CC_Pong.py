@@ -5,12 +5,16 @@ import pygame
 pygame.init()
 
 #Set the display size, make the display, give it a title
-display_size = (800, 800)
+display_width = 800
+display_height = 800
+display_size = (display_width, display_height)
 display = pygame.display.set_mode(display_size)
 pygame.display.set_caption("Snake")
 
 #Set the starting position for paddle1
 paddle1_y = 400
+
+paddle1_height = 100
 
 #Start the game loop
 running = True
@@ -25,11 +29,11 @@ while running:
     #This line makes a list of bools for each key on the keyboard, true if it is pressed
     keys = pygame.key.get_pressed()
 
-    #Here we check if the keys "w" or "s" from the list are pressed and if they are we move paddle 1 up or down (the y is flipped)
-    if keys[pygame.K_w]:
+    #Here we check if the keys "w" or "s" from the list are pressed and if they are (and the paddle is within the screen height) we move paddle 1 up or down (the y is flipped)
+    if keys[pygame.K_w] and paddle1_y >= 0:
         paddle1_y -= 0.5
 
-    if keys[pygame.K_s]:
+    if keys[pygame.K_s] and paddle1_y <= (display_height - paddle1_height):
         paddle1_y += 0.5
 
 
