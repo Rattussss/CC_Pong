@@ -1,7 +1,5 @@
 #Hello coding club! Here is where we will make the pong game.
 
-#Hello!
-
 #Import and initialize pygame
 import pygame
 pygame.init()
